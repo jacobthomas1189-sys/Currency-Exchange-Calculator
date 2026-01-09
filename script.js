@@ -87,14 +87,14 @@ buyBtn.onclick = () => {
     loadUSDT();
 };
 
-[usdtAmount, marketRate, clientRate, clientType].forEach(el => {
+[usdtAmount, marketRate, clientRate].forEach(el => {
     el.addEventListener("input", () => {
         usdtData[mode] = {
-            u: usdtAmount.value,
-            m: marketRate.value,
-            c: clientRate.value,
-            type: clientType.value
-        };
+    u: usdtAmount.value,
+    m: marketRate.value,
+    c: clientRate.value
+};
+
         calculateUSDT();
     });
 });
@@ -104,7 +104,6 @@ function loadUSDT(){
     usdtAmount.value = d.u;
     marketRate.value = d.m;
     clientRate.value = d.c;
-    clientType.value = d.type;
     calculateUSDT();
 }
 
@@ -112,7 +111,8 @@ function calculateUSDT(){
     const u = +usdtAmount.value;
     const m = +marketRate.value;
     const c = +clientRate.value;
-    const type = clientType.value;
+    const type = "PKR";
+
 
     if(!u || !m || !c){
         usdtOutput.innerHTML = "Enter values to see result.";
@@ -133,14 +133,7 @@ function calculateUSDT(){
     <div class="${profit>=0?'profit':'loss'}">
     Your ${profit>=0?'Profit':'Loss'}: ${profit.toLocaleString()} PKR</div>`;
 }
-else {
-        const marketUSDT = u / m;
-        const clientUSDT = u / c;
-        const profitUSDT = mode === "SELL" ? marketUSDT - clientUSDT : clientUSDT - marketUSDT;
-        html += `<hr><div class="client">Client USDT: ${clientUSDT.toFixed(4)}</div>
-        <div class="${profitUSDT>=0?'profit':'loss'}">
-        Your ${profitUSDT>=0?'Profit':'Loss'}: ${profitUSDT.toFixed(4)} USDT</div>`;
-    }
+
 
     html += `<div style="font-size:12px;color:#888;">Mode: USDT ${mode}</div>`;
     usdtOutput.innerHTML = html;
