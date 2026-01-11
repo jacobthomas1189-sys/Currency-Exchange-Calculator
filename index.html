@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--
+  ===================================================================
+  CURRENCY & USDT DEAL CALCULATOR - SEO & Structure Upgrade
+  ===================================================================
+  
+  UPGRADE SUMMARY:
+  - Added comprehensive SEO meta tags (title, description, keywords)
+  - Added Open Graph tags for social media sharing
+  - Added Twitter Card tags for Twitter sharing
+  - Implemented semantic HTML structure (header, main, section, article, footer)
+  - Added keyword-focused H1 heading
+  - Added product introduction section
+  - Added use cases section with grid layout
+  - Added FAQ section for better SEO and user experience
+  - All existing IDs and classes preserved (100% JavaScript compatible)
+  - All calculation logic remains unchanged (script.js untouched)
+  
+  WHAT WAS CHANGED:
+  - Added SEO meta tags in <head>
+  - Wrapped content in semantic HTML elements
+  - Added H1 in header section
+  - Added intro, use cases, and FAQ sections
+  - Added footer with copyright information
+  - Improved HTML structure for better SEO indexing
+  
+  WHAT WAS NOT CHANGED:
+  - All input IDs (curAmount, curRateUSDT, etc.)
+  - All button IDs (saveCurrencyDeal, saveUSDTDeal, etc.)
+  - All div IDs (currencySection, usdtSection, etc.)
+  - All class names (tabs, result, card, etc.)
+  - All calculation functionality
+  ===================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta Tags -->
+<title>Currency & USDT Deal Calculator - Free Online Trading Profit Calculator</title>
+<meta name="description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions. Track daily deals and profits.">
+<meta name="keywords" content="currency calculator, USDT calculator, trading profit calculator, PKR calculator, currency deal calculator, USDT buy sell, profit loss calculator, crypto calculator">
+<meta name="author" content="Faisal Aslam">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Currency & USDT Deal Calculator - Free Online Trading Profit Calculator">
+<meta property="og:description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://your-domain.com">
+<meta property="og:image" content="https://your-domain.com/og-image.jpg">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Currency & USDT Deal Calculator - Free Online Trading Profit Calculator">
+<meta name="twitter:description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions.">
+<meta name="twitter:image" content="https://your-domain.com/twitter-image.jpg">
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+<header>
+  <div class="header-content">
+    <h1>Currency & USDT Deal Calculator</h1>
+    <p class="tagline">Calculate profits and losses for currency trading and USDT transactions</p>
+  </div>
+</header>
+
+<main>
+  <!-- Calculator Card -->
+  <section class="calculator-section">
+    <div class="card">
+      <div class="brand">Built by Faisal Aslam</div>
+
+<div class="tabs">
+    <div class="tab active" id="currencyTab">Currency Deal</div>
+    <div class="tab" id="usdtTab">USDT Deal</div>
+</div>
+
+<!-- ================= CURRENCY DEAL (UNTOUCHED) ================= -->
+<div id="currencySection">
+
+<label>Currency Amount</label>
+<input type="number" id="curAmount" value="1">
+
+<label>Currency Rate Against USDT</label>
+<input type="number" id="curRateUSDT">
+
+<label>USDT → PKR Rate</label>
+<input type="number" id="curUsdtPKR">
+
+<label>Client Rate</label>
+<div class="input-row">
+    <input type="number" id="curClientRate">
+    <select id="curClientType">
+        <option value="PKR">PKR</option>
+        <option value="USDT">USDT</option>
+    </select>
+</div>
+
+<div class="result" id="currencyOutput">
+Enter values to see result.
+</div>
+<button class="save-deal-btn" id="saveCurrencyDeal">
+  Save to Today's Profit
+</button>
+</div>
+
+<!-- ================= USDT DEAL ================= -->
+<div id="usdtSection" style="display:none;">
+
+<div class="sub-tabs">
+   <div class="sub sell active" id="sellBtn">USDT SELL</div>
+<div class="sub buy" id="buyBtn">USDT BUY</div>
+
+</div>
+
+<label>USDT Amount</label>
+<input type="number" id="usdtAmount">
+
+<label>USDT Rate in Market</label>
+<input type="number" id="marketRate">
+
+<label>Client Rate (PKR)</label>
+<div class="input-row">
+    <input type="number" id="clientRate">
+</div>
+
+
+<div class="result" id="usdtOutput">
+Enter values to see result.
+</div>
+<button class="save-deal-btn" id="saveUSDTDeal">
+  Save to Today's Profit
+</button>
+
+</div>
+
+<!-- ===== TODAY DEALS SECTION (SHARED) ===== -->
+<!-- Daily Total Profit Summary -->
+<div id="dailySummary" class="daily-summary" style="display:none;">
+  <div class="summary-title">Today's Profit</div>
+  <div class="summary-pkr">
+    Total PKR: <span id="dailyTotalProfit">0</span> <small>PKR</small>
+  </div>
+  <div class="summary-usdt">
+    Total USDT: <span id="dailyTotalProfitUSDT">0</span> <small>USDT</small>
+  </div>
+  <div class="summary-count">
+  Total Deals Today: <span id="dailyDealsCount">0</span>
+</div>
+</div>
+
+<button class="save-deal-btn" id="viewTodayDeals">
+  View Today's Deals
+</button>
+
+<button class="save-deal-btn" id="clearTodayDeals" style="display:none;">
+  Clear Today's Deals
+</button>
+
+<div class="result" id="todayDealsOutput" style="display:none;">
+</div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js");
+  });
+  }
+</script>
+    </section>
+
+  <!-- Product Intro Section -->
+  <section class="intro-section">
+    <article>
+      <h2>What is this Calculator?</h2>
+      <p>This free online calculator helps traders and businesses calculate profit and loss for currency deals and USDT (Tether) transactions. Whether you're dealing with foreign currencies against USDT or buying/selling USDT in PKR, this tool provides instant calculations with accurate profit/loss analysis.</p>
+    </article>
+  </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases-section">
+      <article>
+        <h2>Use Cases</h2>
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <h3>Currency Trading</h3>
+            <p>Calculate profit/loss when trading foreign currencies against USDT. Input currency amount, USDT rate, and PKR conversion to see your margin.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>USDT Buying</h3>
+            <p>Calculate profit when buying USDT. Compare market rate with client rate to determine your profit margin per transaction.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>USDT Selling</h3>
+            <p>Calculate profit when selling USDT. Track your margins by comparing what you receive versus market rates.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Daily Profit Tracking</h3>
+            <p>Save all your deals and track daily profit totals. View transaction history and manage your trading records.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <article>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>How does the currency deal calculator work?</h3>
+            <p>The calculator converts your currency amount to USDT using the current rate, then converts to PKR. It calculates profit/loss by comparing market rates with your client rate in either PKR or USDT.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What's the difference between USDT Buy and Sell?</h3>
+            <p>When selling USDT, you calculate profit based on the difference between client rate and market rate. When buying USDT, profit is calculated when the market rate is higher than the client rate you're paying.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How are deals saved?</h3>
+            <p>All deals are saved to your browser's local storage for the current day. You can view, track, and delete deals. Data persists until you clear your browser data or manually clear deals.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I calculate profit in both PKR and USDT?</h3>
+            <p>Yes! For currency deals, you can select whether your client rate is in PKR or USDT. The calculator will automatically show profit in the corresponding currency unit.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this calculator free to use?</h3>
+            <p>Yes, this is a completely free, client-side calculator. No registration, no backend, and all calculations happen in your browser.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+<!-- Support Section -->
+<div class="support-card">
+  <p class="support-text">
+    This tool is free to use. You can support it if you find it helpful.
+  </p>
+
+  <button class="support-btn" id="supportToggleBtn" type="button">
+    ☕ Buy me a coffee
+  </button>
+
+  <div class="support-toggle" id="supportToggle">
+
+    <div class="crypto-list">
+
+      <div class="crypto-item">
+  <span class="crypto-label">BSC (BEP20)</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      0xe6776b4280590cda911a1980930999ea72c72f53
+    </span>
+    <span class="copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+
+      <div class="crypto-item">
+  <span class="crypto-label">APTOS</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      0xf53b9f30bbfe91d9223c8bba741b23c61d5b5b519b70601c4deb32bd39d3b815
+    </span>
+    <span class="copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+      <div class="crypto-item">
+  <span class="crypto-label">TRON (TRC20)</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      TLjT3FHgMLxkRAbAvxYGvtjhwj2Xdm5x3n
+    </span>
+    <span class="copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+  <footer>
+    <p>&copy; 2024 Currency & USDT Deal Calculator. Built by Faisal Aslam.</p>
+    <p class="footer-note">Free online tool for traders and businesses.</p>
+  </footer>
+
+  <div id="toast" class="toast">Saved successfully</div>
+
+</body>
+</html>
