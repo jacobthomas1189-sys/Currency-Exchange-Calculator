@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--
+  ===================================================================
+  CURRENCY & USDT DEAL CALCULATOR - SEO & Structure Upgrade
+  ===================================================================
+  
+  UPGRADE SUMMARY:
+  - Added comprehensive SEO meta tags (title, description, keywords)
+  - Added Open Graph tags for social media sharing
+  - Added Twitter Card tags for Twitter sharing
+  - Implemented semantic HTML structure (header, main, section, article, footer)
+  - Added keyword-focused H1 heading
+  - Added product introduction section
+  - Added use cases section with grid layout
+  - Added FAQ section for better SEO and user experience
+  - All existing IDs and classes preserved (100% JavaScript compatible)
+  - All calculation logic remains unchanged (script.js untouched)
+  
+  WHAT WAS CHANGED:
+  - Added SEO meta tags in <head>
+  - Wrapped content in semantic HTML elements
+  - Added H1 in header section
+  - Added intro, use cases, and FAQ sections
+  - Added footer with copyright information
+  - Improved HTML structure for better SEO indexing
+  
+  WHAT WAS NOT CHANGED:
+  - All input IDs (curAmount, curRateUSDT, etc.)
+  - All button IDs (saveCurrencyDeal, saveUSDTDeal, etc.)
+  - All div IDs (currencySection, usdtSection, etc.)
+  - All class names (tabs, result, card, etc.)
+  - All calculation functionality
+  ===================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta Tags -->
+<title>Currency & USDT Deal Calculator - Free Online Trading Profit Calculator</title>
+<meta name="description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions. Track daily deals and profits.">
+<meta name="keywords" content="currency calculator, USDT calculator, trading profit calculator, PKR calculator, currency deal calculator, USDT buy sell, profit loss calculator, crypto calculator">
+<meta name="author" content="Faisal Aslam">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Currency & USDT Deal Calculator - Free Online Trading Profit Calculator">
+<meta property="og:description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://your-domain.com">
+<meta property="og:image" content="https://your-domain.com/og-image.jpg">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Currency & USDT Deal Calculator - Free Online Trading Profit Calculator">
+<meta name="twitter:description" content="Calculate profit and loss for currency deals and USDT trading. Free online calculator for currency rates, USDT buy/sell transactions, and PKR conversions.">
+<meta name="twitter:image" content="https://your-domain.com/twitter-image.jpg">
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+<header>
+  <div class="header-content">
+    <h1>Currency & USDT Deal Calculator</h1>
+    <p class="tagline">Calculate profits and losses for currency trading and USDT transactions</p>
+  </div>
+</header>
+
+<main>
+  <!-- Calculator Card -->
+  <section class="calculator-section">
+    <div class="card">
+      <div class="brand">Built by Faisal Aslam</div>
+
+<div class="tabs">
+  <div class="tab active" id="currencyTab">Currency Deal</div>
+  <div class="tab" id="usdtTab">USDT Deal</div>
+  <div class="tab" id="ledgerTab">USDT Ledger</div>
+  <div class="tab" id="pkrTab">PKR Ledger</div>
+</div>
+
+<!-- ================= CURRENCY DEAL (UNTOUCHED) ================= -->
+<div id="currencySection">
+
+<label>Currency Amount</label>
+<input type="number" id="curAmount" value="1">
+
+<label>Currency → USDT Rate</label>
+<input type="number" id="curRateUSDT">
+
+<label>USDT → PKR Rate</label>
+<input type="number" id="curUsdtPKR">
+
+<label>Agreed Client Rate</label>
+<div class="input-row">
+    <input type="number" id="curClientRate">
+    <select id="curClientType">
+        <option value="PKR">PKR</option>
+        <option value="USDT">USDT</option>
+    </select>
+</div>
+
+<div class="result" id="currencyOutput">
+Enter values to see result.
+</div>
+<button class="save-deal-btn" id="saveCurrencyDeal">
+  Save to Today's Profit
+</button>
+</div>
+
+<!-- ================= USDT DEAL ================= -->
+<div id="usdtSection" style="display:none;">
+
+<div class="sub-tabs">
+   <div class="sub sell active" id="sellBtn">USDT SELL</div>
+<div class="sub buy" id="buyBtn">USDT BUY</div>
+
+</div>
+
+<label>USDT Amount</label>
+<input type="number" id="usdtAmount">
+
+<label>USDT Market Rate</label>
+<input type="number" id="marketRate">
+
+<label>Agreed Client Rate (PKR)</label>
+<div class="input-row">
+    <input type="number" id="clientRate">
+</div>
+
+
+<div class="result" id="usdtOutput">
+Enter values to see result.
+</div>
+<button class="save-deal-btn" id="saveUSDTDeal">
+  Save to Today's Profit
+</button>
+
+</div>
+
+<!-- ================= USDT LEDGER ================= -->
+<div id="ledgerSection" style="display:none;">
+
+<div class="sub-tabs">
+  <div class="sub active" id="giveUsdtBtn">USDT to Receive</div>
+  <div class="sub" id="takeUsdtBtn">USDT to Return</div>
+</div>
+
+<div class="result" id="ledgerSummary">
+  <span id="ledgerSummaryLabel">Total USDT to Receive:</span>
+  <span id="ledgerTotal">0.00</span> USDT
+</div>
+
+<div class="result">
+  <div class="ledger-swipe-hint">← Swipe left / right to view full record →</div>
+  <div class="ledger-table-scroll">
+    <table class="ledger-table">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Person Name</th>
+          <th>USDT Amount</th>
+          <th>Reference Rate</th>
+          <th>Notes</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ledger-sn">-</td>
+          <td><input type="text" id="ledgerPerson" placeholder="Name"></td>
+          <td><input type="number" id="ledgerAmount" placeholder="0"></td>
+          <td><input type="number" id="ledgerRate" placeholder="Optional"></td>
+          <td><input type="text" id="ledgerNotes" placeholder="Optional"></td>
+          <td><input type="date" id="ledgerDate"></td>
+          <td><button class="save-deal-btn show ledger-save-btn" id="saveLedgerEntry" type="button">Save</button></td>
+        </tr>
+      </tbody>
+      <tbody id="ledgerEntriesBody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<!-- ================= PKR LEDGER ================= -->
+<div id="pkrLedgerSection" style="display:none;">
+
+<div class="sub-tabs">
+  <div class="sub active" id="givePkrBtn">PKR to Receive</div>
+  <div class="sub" id="takePkrBtn">PKR to Return</div>
+ </div>
+
+ <div class="result" id="pkrLedgerSummary">
+   <span id="pkrLedgerSummaryLabel">Total PKR to Receive:</span>
+   <span id="pkrLedgerTotal">0.00</span> PKR
+ </div>
+
+ <div class="result">
+   <div class="ledger-swipe-hint">← Swipe left / right to view full record →</div>
+   <div class="ledger-table-scroll">
+     <table class="ledger-table">
+       <thead>
+         <tr>
+           <th>S/N</th>
+           <th>Person Name</th>
+           <th>PKR Amount</th>
+           <th>Reference Rate</th>
+           <th>Notes</th>
+           <th>Date</th>
+           <th>Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td class="ledger-sn">-</td>
+           <td><input type="text" id="pkrLedgerPerson" placeholder="Name"></td>
+           <td><input type="number" id="pkrLedgerAmount" placeholder="0"></td>
+           <td><input type="number" id="pkrLedgerRate" placeholder="Optional"></td>
+           <td><input type="text" id="pkrLedgerNotes" placeholder="Optional"></td>
+           <td><input type="date" id="pkrLedgerDate"></td>
+           <td><button class="save-deal-btn show ledger-save-btn" id="savePkrLedgerEntry" type="button">Save</button></td>
+         </tr>
+       </tbody>
+       <tbody id="pkrLedgerEntriesBody"></tbody>
+     </table>
+   </div>
+ </div>
+
+</div>
+<!-- ===== TODAY DEALS SECTION (SHARED) ===== -->
+<!-- Daily Total Profit Summary -->
+<div id="dailySummary" class="daily-summary" style="display:none;">
+  <div class="summary-title">Today's Profit</div>
+  <div class="summary-pkr">
+    Total PKR: <span id="dailyTotalProfit">0</span> <small>PKR</small>
+  </div>
+  <div class="summary-usdt">
+    Total USDT: <span id="dailyTotalProfitUSDT">0</span> <small>USDT</small>
+  </div>
+  <div class="summary-count">
+  Total Deals Today: <span id="dailyDealsCount">0</span>
+</div>
+</div>
+
+<button class="save-deal-btn" id="viewTodayDeals">
+  View Today's Deals
+</button>
+
+<button class="save-deal-btn" id="clearTodayDeals" style="display:none;">
+  Clear Today's Deals
+</button>
+
+<div class="result" id="todayDealsOutput" style="display:none;">
+</div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js");
+  });
+  }
+</script>
+    </section>
+
+  <div id="contentSection">
+    <section class="intro-section">
+      <article>
+        <h2>What is this Calculator?</h2>
+        <p>This free online calculator helps traders and businesses calculate profit and loss for currency deals and USDT (Tether) transactions. Whether you're dealing with foreign currencies against USDT or buying/selling USDT in PKR, this tool provides instant calculations with accurate profit/loss analysis.</p>
+      </article>
+    </section>
+
+    <section class="use-cases-section">
+      <article>
+        <h2>Use Cases</h2>
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <h3>Currency Trading</h3>
+            <p>Calculate profit/loss when trading foreign currencies against USDT. Input currency amount, USDT rate, and PKR conversion to see your margin.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>USDT Buying</h3>
+            <p>Calculate profit when buying USDT. Compare market rate with client rate to determine your profit margin per transaction.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>USDT Selling</h3>
+            <p>Calculate profit when selling USDT. Track your margins by comparing what you receive versus market rates.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Daily Profit Tracking</h3>
+            <p>Save all your deals and track daily profit totals. View transaction history and manage your trading records.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="intro-section">
+      <article>
+        <h2>What is the USDT Ledger?</h2>
+        <p>The USDT Ledger is a simple record-keeping feature inside this calculator that helps you track non-trading USDT movements. Instead of calculating profit or loss, it keeps a clean register of USDT to Receive (others owe you) and USDT to Return (you owe others). It is useful for managing credit, loans, and ongoing settlements without mixing them with trading deals.</p>
+      </article>
+    </section>
+
+    <section class="use-cases-section">
+      <article>
+        <h2>USDT Ledger Use Cases</h2>
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <h3>USDT to Receive</h3>
+            <p>Record USDT that others owe you. Add the person name, USDT amount, optional rate, notes, and date so you always know how much USDT you are expecting from each party.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>USDT to Return</h3>
+            <p>Track USDT that you need to return to others. Use this to manage short-term loans, client advances, or internal transfers that must be settled later.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Daily Record Keeping</h3>
+            <p>Use the ledger as your daily USDT register. Every new entry updates the running totals for USDT to Receive and USDT to Return so you can quickly see your current exposure.</p>
+          </div>
+          <div class="use-case-card">
+            <h3>Mobile-Friendly Swipe Table</h3>
+            <p>The USDT Ledger uses a horizontal swipe table on mobile. Swipe left or right to view the full record while keeping all columns visible, even on smaller screens.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="faq-section">
+      <article>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>What’s the difference between Currency Deal, USDT Deal, and USDT Ledger?</h3>
+            <p>Currency Deal and USDT Deal calculate trading profit/loss. USDT Ledger is a simple register to track USDT to Receive and USDT to Return — no profit/loss.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Does the USDT Ledger calculate profit or loss?</h3>
+            <p>No. It only records amounts and updates totals for USDT to Receive and USDT to Return.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Where is my data stored?</h3>
+            <p>All data is stored locally in your browser using local storage.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I delete saved deals or ledger entries?</h3>
+            <p>Yes. You can delete individual deals or ledger entries; totals update automatically.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is the tool free to use?</h3>
+            <p>Yes. This is a free, client-side SaaS tool with no backend.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+  </main>
+
+<!-- Support Section -->
+<div class="support-card">
+  <p class="support-text">
+    This tool is free to use. You can support it if you find it helpful.
+  </p>
+
+  <button class="support-btn" id="supportToggleBtn" type="button">
+    ☕ Buy me a coffee
+  </button>
+
+  <div class="support-toggle" id="supportToggle">
+
+    <div class="crypto-list">
+
+      <div class="crypto-item">
+  <span class="crypto-label">BSC (BEP20)</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      0xe6776b4280590cda911a1980930999ea72c72f53
+    </span>
+    <span class="support-copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+
+      <div class="crypto-item">
+  <span class="crypto-label">APTOS</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      0xf53b9f30bbfe91d9223c8bba741b23c61d5b5b519b70601c4deb32bd39d3b815
+    </span>
+    <span class="support-copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+      <div class="crypto-item">
+  <span class="crypto-label">TRON (TRC20)</span>
+
+  <div class="crypto-row">
+    <span class="crypto-address">
+      TLjT3FHgMLxkRAbAvxYGvtjhwj2Xdm5x3n
+    </span>
+    <span class="support-copy-icon" title="Copy address">📋</span>
+  </div>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+  <footer>
+    <p>&copy; 2024 Currency & USDT Deal Calculator. Built by Faisal Aslam.</p>
+    <p class="footer-note">Free online tool for traders and businesses.</p>
+  </footer>
+
+  <div id="toast" class="toast">Saved successfully</div>
+
+</body>
+</html>
